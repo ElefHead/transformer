@@ -2,7 +2,7 @@ import torch
 from torch import nn
 
 
-class LayerNormalization(nn.Module):
+class LayerNorm(nn.Module):
     def __init__(self,
                  in_features,
                  gamma=True,
@@ -16,7 +16,7 @@ class LayerNormalization(nn.Module):
         :param beta: Add an offset parameter if it is True.
         :param epsilon: Epsilon for calculating variance.
         """
-        super(LayerNormalization, self).__init__()
+        super(LayerNorm, self).__init__()
         if isinstance(in_features, int):
             in_features = (in_features,)
         else:
