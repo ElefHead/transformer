@@ -3,3 +3,4 @@ from .layer_normalization import LayerNorm
 from .sublayer import Sublayer
 from .encoder import EncoderLayer, Encoder
 from .decoder import DecoderLayer, Decoder
+from .attention import MultiHeadAttention

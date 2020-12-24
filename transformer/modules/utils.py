@@ -3,7 +3,7 @@ from torch import nn
 from copy import deepcopy
 
 
-def clone_layer(layer: nn.Module, N: int) -> nn.ModuleList:
+def clone_module(layer: nn.Module, N: int) -> nn.ModuleList:
     """
     Produce N identical layers
     """

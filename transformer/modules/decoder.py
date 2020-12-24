@@ -1,7 +1,7 @@
 import torch
 from torch import nn
 
-from transformer.modules import clone_layer, Sublayer, LayerNorm
+from transformer.modules import clone_module, Sublayer, LayerNorm
 
 
 class DecoderLayer(nn.Module):
@@ -15,7 +15,7 @@ class DecoderLayer(nn.Module):
         self.masked_self_attn = masked_self_attn
         self.enc_attn = enc_attn
         self.feed_forward = feed_forward
-        self.sublayer = clone_layer(
+        self.sublayer = clone_module(
             Sublayer(size, dropout_prob=dropout_prob), 3)
 
     def forward(self, x: torch.Tensor,
@@ -32,7 +32,7 @@ class DecoderLayer(nn.Module):
 class Decoder(nn.Module):
     def __init__(self, layer: DecoderLayer, N: int):
         super(Decoder, self).__init__()
-        self.layers = clone_layer(layer, N)
+        self.layers = clone_module(layer, N)
         self.norm = LayerNorm(layer.size)
 
     def forward(self, x: torch.Tensor,
