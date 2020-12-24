@@ -1,13 +1,15 @@
 import torch
 from torch import nn
 
+from typing import Union, List, Tuple
+
 
 class LayerNorm(nn.Module):
     def __init__(self,
-                 in_features,
-                 gamma=True,
-                 beta=True,
-                 epsilon=1e-6):
+                 in_features: Union[int, List[int], Tuple[int, ...]],
+                 gamma: bool = True,
+                 beta: bool = True,
+                 epsilon: float = 1e-6):
         """Layer normalization layer
         See: [Layer Normalization](https://arxiv.org/pdf/1607.06450.pdf)
         :param in_features: The shape of the input tensor

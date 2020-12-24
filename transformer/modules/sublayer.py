@@ -2,11 +2,11 @@ import torch
 from torch import nn
 from transformer.modules import LayerNorm
 
-from typing import List, Union
+from typing import Union, List, Tuple
 
 
 class Sublayer(nn.Module):
-    def __init__(self, in_features: Union[int, List[int], tuple],
+    def __init__(self, in_features: Union[int, List[int], Tuple[int, ...]],
                  dropout_prob: float) -> None:
         """
         """
