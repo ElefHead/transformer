@@ -1,6 +1,6 @@
 import torch
 from torch import nn
-from transformer.layers import clone_layer, Sublayer
+from transformer.modules import clone_layer, Sublayer, LayerNorm
 
 from typing import Union, List
 
@@ -18,3 +18,22 @@ class EncoderLayer(nn.Module):
     def forward(self, x: torch.Tensor, mask: torch.Tensor):
         x = self.sublayer[0](x, lambda x: self.self_attn(x, x, x, mask))
         return self.sublayer[1](x, self.feed_forward)
+
+
+class Encoder(nn.Module):
+    def __init__(self, layer, N):
+        super(Encoder, self).__init__()
+        self.layers = clone_layer(layer, N)
+        self.norm = LayerNorm(layer.size)
+
+    def forward(self, x, mask):
+        """
+        Pass the input x(and mask) through each layer in turn.
+        """
+        for layer in self.layers:
+            """
+            Encoder layer will also have encoder masks.
+            Duh.
+            """
+            x = layer(x, mask)
+        return self.norm(x)
