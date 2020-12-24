@@ -25,7 +25,8 @@ def attention(query: torch.Tensor, key: torch.Tensor,
 
 
 class MultiHeadAttention(nn.Module):
-    def __init__(self, h: int, d_model: int, dropout_prob: float = 0.1):
+    def __init__(self, h: int, d_model: int,
+                 dropout_prob: float = 0.1) -> None:
         super(MultiHeadAttention, self).__init__()
         assert d_model % h == 0
         self.d_k = d_model // h
@@ -34,7 +35,10 @@ class MultiHeadAttention(nn.Module):
         self.attn = None
         self.dropout = nn.Dropout(p=dropout_prob)
 
-    def forward(self, query, key, value, mask=None):
+    def forward(self, query: torch.Tensor,
+                key: torch.Tensor,
+                value: torch.Tensor,
+                mask: torch.Tensor = None) -> torch.Tensor:
         if mask is not None:
             # Same mask applied to all h heads.
             mask = mask.unsqueeze(1)
