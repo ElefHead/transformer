@@ -21,7 +21,7 @@ class EncoderLayer(nn.Module):
 
 
 class Encoder(nn.Module):
-    def __init__(self, layer: EncoderLayer, N: int):
+    def __init__(self, layer: EncoderLayer, N: int) -> None:
         super(Encoder, self).__init__()
         self.layers = clone_module(layer, N)
         self.norm = LayerNorm(layer.size)
