@@ -45,9 +45,7 @@ class LayerNorm(nn.Module):
         return y
 
     def extra_repr(self):
-        return (
-            f'in_features={self.in_features}, ',
-            f'gamma={self.gamma is not None}, ',
-            f'beta={self.beta is not None}, ',
-            f'epsilon={self.epsilon}'
-        )
+        return f'in_features={self.in_features}, ' + \
+               f'gamma={self.gamma is not None}, ' + \
+               f'beta={self.beta is not None}, ' + \
+               f'epsilon={self.epsilon}'

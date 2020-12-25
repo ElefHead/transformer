@@ -8,7 +8,7 @@ from typing import Union, List, Tuple
 class EncoderLayer(nn.Module):
     def __init__(self, size: Union[int, List[int], Tuple[int, ...]],
                  self_attn: nn.Module, feed_forward: nn.Module,
-                 dropout_prob: int) -> None:
+                 dropout_prob: float) -> None:
         super(EncoderLayer, self).__init__()
         self.self_attn = self_attn
         self.feed_forward = feed_forward
