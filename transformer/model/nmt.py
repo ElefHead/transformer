@@ -18,13 +18,14 @@ class EncoderDecoder(nn.Module):
     def __init__(self, encoder: Encoder,
                  decoder: Decoder, src_embed: nn.Sequential,
                  tgt_embed: nn.Sequential,
-                 generator: Generator) -> None:
+                 generator: Generator, d_model:int) -> None:
         super(EncoderDecoder, self).__init__()
         self.encoder = encoder
         self.decoder = decoder
         self.src_embed = src_embed
         self.tgt_embed = tgt_embed
         self.generator = generator
+        self.d_model = d_model
 
     def forward(self, src: torch.Tensor,
                 tgt: torch.Tensor,
@@ -91,7 +92,8 @@ def make_model(src_vocab_size: int, tgt_vocab_size: int,
         generator=Generator(
             d_model=d_model,
             vocab_size=tgt_vocab_size
-        )
+        ),
+        d_model=d_model
     )
 
     for p in model.parameters():
