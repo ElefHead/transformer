@@ -25,14 +25,12 @@ class LayerNorm(nn.Module):
             in_features = (in_features[-1],)
         self.in_features = torch.Size(in_features)
         self.epsilon = epsilon
+        self.gamma = None
         if gamma:
-            self.gamma = torch.ones(*in_features)
-        else:
-            self.register_parameter('gamma', None)
+            self.gamma = nn.Parameter(torch.ones(*in_features))
+        self.beta = None
         if beta:
-            self.beta = torch.zeros(*in_features)
-        else:
-            self.register_parameter('beta', None)
+            self.beta = nn.Parameter(torch.zeros(*in_features))
 
     def forward(self, x):
         mean = x.mean(dim=-1, keepdim=True)

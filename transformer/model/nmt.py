@@ -18,7 +18,7 @@ class EncoderDecoder(nn.Module):
     def __init__(self, encoder: Encoder,
                  decoder: Decoder, src_embed: nn.Sequential,
                  tgt_embed: nn.Sequential,
-                 generator: Generator, d_model:int) -> None:
+                 generator: Generator, d_model: int) -> None:
         super(EncoderDecoder, self).__init__()
         self.encoder = encoder
         self.decoder = decoder
