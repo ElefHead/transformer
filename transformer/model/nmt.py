@@ -3,7 +3,7 @@ from torch import nn
 
 from transformer.modules import Encoder, Decoder, Generator
 from transformer.modules import MultiHeadAttention, PositionalEncoding
-from transformer.modules import PositionWiseFeedForward, Embeddings
+from transformer.modules import PositionwiseFeedForward, Embeddings
 from transformer.modules import EncoderLayer, DecoderLayer
 
 from copy import deepcopy
@@ -50,7 +50,7 @@ def make_model(src_vocab_size: int, tgt_vocab_size: int,
     c = deepcopy
     attn = MultiHeadAttention(h=h, d_model=d_model,
                               dropout_prob=dropout_prob)
-    ff = PositionWiseFeedForward(d_model=d_model,
+    ff = PositionwiseFeedForward(d_model=d_model,
                                  d_ff=d_ff, dropout_prob=dropout_prob)
     position = PositionalEncoding(
         d_model=d_model,

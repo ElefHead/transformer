@@ -13,4 +13,4 @@ class Embeddings(nn.Module):
         self.d_model = d_model
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        return self.look_up(x) / sqrt(self.d_model)
+        return self.look_up(x) * sqrt(self.d_model)
