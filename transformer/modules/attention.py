@@ -17,7 +17,7 @@ def attention(query: torch.Tensor, key: torch.Tensor,
     scores = torch.matmul(query, key.transpose(-2, -1)) \
         / sqrt(d_k)
     if mask is not None:
-        scores = scores.masked_fill(mask == 0, -float("inf"))
+        scores = scores.masked_fill(mask == 0, -1e9)
     attention_probs = softmax(scores, dim=-1)
     if dropout is not None:
         attention_probs = dropout(attention_probs)

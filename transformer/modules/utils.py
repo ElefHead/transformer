@@ -8,7 +8,6 @@ def clone_module(layer: nn.Module, N: int) -> nn.ModuleList:
     """
     return nn.ModuleList(
         modules=[
-            deepcopy(layer)
-        ] * N
+            deepcopy(layer) for _ in range(N)
+        ]
     )
-
